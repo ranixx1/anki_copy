@@ -1,7 +1,10 @@
 package com.example.anki_copy.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,15 +20,20 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/cards")
 @RequiredArgsConstructor
 
-
 public class CardController {
     private final CardService cardService;
-    @PostMapping
-    public ResponseEntity<Card> criarChamado(@RequestBody Card card){
-        Card novoCard = cardService.criarCard(card.getFront(),card.getBack(), card.getLevel());
 
-        return ResponseEntity.ok(novoCard);
+    @PostMapping
+    public ResponseEntity<Card> criarCCard(@RequestBody Card card) {
+        Card novoCard = cardService.criarCard(card.getFront(), card.getBack(), card.getLevel());
+
+        return ResponseEntity.status(201).body(novoCard);
 
     }
-    
+
+    @GetMapping("/cards")
+    public ResponseEntity<List<Card>>listarCard(){
+        return ResponseEntity.ok(cardService.listarCards());
+    }
+
 }
