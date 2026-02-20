@@ -2,6 +2,7 @@ package com.example.anki_copy.service;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import com.example.anki_copy.enums.Level;
 import com.example.anki_copy.model.Card;
 import com.example.anki_copy.repository.CardRepository;
@@ -17,5 +18,13 @@ public class CardService {
     public Card criarCard(String front,String back, Level level){
         return repository.findByFrontAndBack(front, back).orElseGet(() -> repository.save(new Card(front, back, level)));
 
+    }
+
+    public List<Card> listarCards(){
+        var chamados = repository.findAll();
+        if( chamados.isEmpty()){
+            throw new RuntimeException("Lista de Cards está vazia");
+        }
+        return chamados;
     }
 }
