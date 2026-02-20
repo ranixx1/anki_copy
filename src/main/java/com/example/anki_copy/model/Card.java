@@ -1,9 +1,11 @@
 package com.example.anki_copy.model;
 
 
-import com.example.anki_copy.enums.Level;
 import lombok.Getter;
 import lombok.Setter;
+
+import com.example.anki_copy.enums.Level;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
