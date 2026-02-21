@@ -13,6 +13,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @Getter
@@ -33,6 +35,11 @@ public class Card {
 
     @Enumerated(EnumType.STRING)
     private Level level;
+    
+
+    @ManyToOne
+    @JoinColumn(name = "deck_id")
+    private Deck deck;
 
     public Card(String front, String back, Level level) {
         if(front == null || back == null){
