@@ -24,7 +24,7 @@ public class CardController {
     private final CardService cardService;
 
     @PostMapping
-    public ResponseEntity<Card> criarCCard(@RequestBody Card card) {
+    public ResponseEntity<Card> criarCard(@RequestBody Card card) {
         Card novoCard = cardService.criarCard(card.getFront(), card.getBack(), card.getLevel());
 
         return ResponseEntity.status(201).body(novoCard);
@@ -35,5 +35,7 @@ public class CardController {
     public ResponseEntity<List<Card>>listarCard(){
         return ResponseEntity.ok(cardService.listarCards());
     }
+
+    
 
 }
