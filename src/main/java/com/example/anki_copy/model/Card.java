@@ -41,12 +41,13 @@ public class Card {
     @JoinColumn(name = "deck_id")
     private Deck deck;
 
-    public Card(String front, String back, Level level) {
+    public Card(String front, String back, Level level, Deck deck) {
         if(front == null || back == null){
             throw new IllegalArgumentException("Informações insuficientes");
         }
         this.front = front;
         this.back = back;
         this.level = level;
+        this.deck = deck;
     }
 }
