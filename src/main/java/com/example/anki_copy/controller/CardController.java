@@ -16,7 +16,6 @@ import com.example.anki_copy.service.CardService;
 
 import lombok.RequiredArgsConstructor;
 
-@Controller
 @RestController
 @RequestMapping("/cards")
 @RequiredArgsConstructor
@@ -32,7 +31,7 @@ public class CardController {
 
     }
 
-    @GetMapping("/cards")
+    @GetMapping
     public ResponseEntity<List<Card>> listarCard() {
         return ResponseEntity.ok(cardService.listarCards());
     }
