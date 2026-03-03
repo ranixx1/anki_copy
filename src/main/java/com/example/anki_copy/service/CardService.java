@@ -29,10 +29,10 @@ public class CardService {
     }
 
     public List<Card> listarCards() {
-        var chamados = cardRepository.findAll();
-        if (chamados.isEmpty()) {
+        var cards = cardRepository.findAll();
+        if (cards.isEmpty()) {
             throw new RuntimeException("Lista de Cards está vazia");
         }
-        return chamados;
+        return cards;
     }
 }
