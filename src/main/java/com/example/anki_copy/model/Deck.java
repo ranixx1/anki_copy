@@ -23,7 +23,7 @@ public class Deck {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "nome")
+    @Column(name = "nome",unique = true)
     private String nome;
 
 
