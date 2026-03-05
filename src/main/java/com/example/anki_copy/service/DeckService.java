@@ -18,6 +18,16 @@ public class DeckService {
         return deckRepository.save(deck);
     }
 
+    public Deck editarDeck(Integer id, String newName){
+        Deck newDeck = deckRepository.findById(id).orElseThrow(()-> new RuntimeException("Deck não encontrado"));
+        if(newDeck.getNome() == newName){
+            throw new IllegalArgumentException("O nome tem que ser diferente.");
+        }
+        newDeck.setNome(newName);
+        return deckRepository.save(newDeck);
+
+    }
+
     public List<Deck> listarDecks() {
         var decks = deckRepository.findAll();
         if (decks.isEmpty()) {
