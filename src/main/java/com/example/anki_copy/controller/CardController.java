@@ -2,6 +2,7 @@ package com.example.anki_copy.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +27,7 @@ public class CardController {
     public ResponseEntity<Card> criarCard(@RequestBody CardRequest request) {
         Card novoCard = cardService.criarCard(request.getFront(), request.getBack(), request.getLevel(),
                 request.getDeckId());
-        return ResponseEntity.status(201).body(novoCard);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novoCard);
 
     }
 
