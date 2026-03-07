@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import com.example.anki_copy.enums.Level;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,6 +40,7 @@ public class Card {
 
     @ManyToOne
     @JoinColumn(name = "deck_id")
+    @JsonBackReference
     private Deck deck;
 
     public Card(String front, String back, Level level, Deck deck) {
