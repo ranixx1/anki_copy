@@ -2,11 +2,14 @@ package com.example.anki_copy.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.example.anki_copy.dto.DeckResponseDTO;
 import com.example.anki_copy.model.Card;
 import com.example.anki_copy.model.Deck;
 import com.example.anki_copy.repository.DeckRepository;
 
+@Service
 public class DeckService {
     private DeckRepository deckRepository;
 
