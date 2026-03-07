@@ -15,17 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.anki_copy.dto.AtualizarDeckDto;
 import com.example.anki_copy.dto.CriarDeckDto;
 import com.example.anki_copy.dto.DeckResponseDTO;
-import com.example.anki_copy.model.Deck;
 import com.example.anki_copy.service.DeckService;
 
 @RestController
-@RequestMapping("/cards")
+@RequestMapping("/decks")
 
 public class DeckController {
     private DeckService deckService;
 
+    public DeckController(DeckService deckService) {
+        this.deckService = deckService;
+    }
+
     @PostMapping()
-    public ResponseEntity<Void> criarCard(@RequestBody CriarDeckDto dto) {
+    public ResponseEntity<Void> criarDeck(@RequestBody CriarDeckDto dto) {
         deckService.criarDeck(dto.getNome());
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
