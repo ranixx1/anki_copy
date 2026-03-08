@@ -28,10 +28,10 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "front")
+    @Column(name = "front", unique = true)
     private String front;
 
-    @Column(name = "back")
+    @Column(name = "back", unique = true)
     private String back;
 
     @Enumerated(EnumType.STRING)
