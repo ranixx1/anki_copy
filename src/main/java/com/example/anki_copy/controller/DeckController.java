@@ -28,10 +28,10 @@ public class DeckController {
         this.deckService = deckService;
     }
 
-    @PostMapping()
-    public ResponseEntity<Void> criarDeck(@RequestBody CriarDeckDto dto) {
-        deckService.criarDeck(dto.getNome());
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    @PostMapping
+    public ResponseEntity<DeckResponseDTO> criarDeck(@RequestBody CriarDeckDto dto) {
+        DeckResponseDTO deck = deckService.criarDeck(dto.getNome());
+        return ResponseEntity.status(HttpStatus.CREATED).body(deck);
     }
 
     @PutMapping("/{id}/name")
@@ -47,9 +47,9 @@ public class DeckController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void>deletar(@PathVariable Integer id){
+    public ResponseEntity<Void> deletar(@PathVariable Integer id) {
         deckService.deletar(id);
         return ResponseEntity.noContent().build();
-    }   
+    }
 
 }

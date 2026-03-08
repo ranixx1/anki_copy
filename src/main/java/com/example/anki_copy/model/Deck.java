@@ -14,20 +14,25 @@ import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.GenerationType;
+
 @Entity
 @Getter
 @Setter
 public class Deck {
-    public Deck(){
+    public Deck() {
 
     }
+
+    public Deck(String nome) {
+        this.nome = nome;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "nome",unique = true)
+    @Column(name = "nome", unique = true)
     private String nome;
-
 
     @OneToMany(mappedBy = "deck", cascade = CascadeType.ALL)
     @JsonManagedReference

@@ -36,6 +36,17 @@ public class CardService {
         return cards;
     }
 
+    public List<Card> listarPorDeck(Integer deckId) {
+
+        List<Card> cards = cardRepository.findByDeckId(deckId);
+
+        if (cards.isEmpty()) {
+            throw new RuntimeException("Nenhum card encontrado para esse deck");
+        }
+
+        return cards;
+    }
+
     public void deletar(Integer id) {
         cardRepository.deleteById(id);
     }

@@ -17,10 +17,12 @@ public class DeckService {
         this.deckRepository = deckRepository;
     }
 
-    public Deck criarDeck(String nome) {
-        Deck deck = new Deck();
-        deck.setNome(nome);
-        return deckRepository.save(deck);
+    public DeckResponseDTO criarDeck(String name) {
+
+        Deck deck = deckRepository.save(new Deck(name));
+        return new DeckResponseDTO(
+                deck.getId(),
+                deck.getNome());
     }
 
     public Deck editarDeck(Integer id, String newName) {
@@ -38,7 +40,7 @@ public class DeckService {
         List<Deck> decks = deckRepository.findAll();
 
         return decks.stream()
-                .map(deck -> new DeckResponseDTO(deck.getId(),deck.getNome()))
+                .map(deck -> new DeckResponseDTO(deck.getId(), deck.getNome()))
                 .toList();
     }
 
@@ -48,7 +50,7 @@ public class DeckService {
         return deck.getCards();
     }
 
-    public void deletar(Integer id){
+    public void deletar(Integer id) {
         deckRepository.deleteById(id);
     }
 }
