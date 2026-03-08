@@ -47,4 +47,8 @@ public class DeckService {
                 .orElseThrow(() -> new RuntimeException("Deck não encontrado."));
         return deck.getCards();
     }
+
+    public void deletar(Integer id){
+        deckRepository.deleteById(id);
+    }
 }
