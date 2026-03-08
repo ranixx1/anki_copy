@@ -35,4 +35,8 @@ public class CardService {
         }
         return cards;
     }
+
+    public void deletar(Integer id) {
+        cardRepository.deleteById(id);
+    }
 }
