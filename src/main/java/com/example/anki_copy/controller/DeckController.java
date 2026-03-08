@@ -46,7 +46,7 @@ public class DeckController {
         return ResponseEntity.ok(deckService.listarDecks());
     }
 
-    @DeleteMapping("/{id")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void>deletar(@PathVariable Integer id){
         deckService.deletar(id);
         return ResponseEntity.noContent().build();
