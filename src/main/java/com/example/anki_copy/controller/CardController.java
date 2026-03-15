@@ -69,8 +69,8 @@ public class CardController {
     }
 
     @GetMapping("/cards/run")
-    public ResponseEntity<Card> runCard(@RequestParam Integer deckId){
-        return ResponseEntity.ok(cardService.runCard(deckId));
+    public ResponseEntity<Card> runCard(@RequestParam String deckname){
+        return ResponseEntity.ok(cardService.runCard(deckname));
     }
 
     @DeleteMapping("/{id}")

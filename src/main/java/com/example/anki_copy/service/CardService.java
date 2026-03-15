@@ -50,18 +50,19 @@ public class CardService {
     }
 
     // anki.run
-    public Card runCard(Integer deckId) {
+    public Card runCard(String deckName) {
 
-        var cardsList = cardRepository.findByDeckId(deckId);
+        Deck deck = deckRepository.findByNameIgnoreCase(deckName)
+                .orElseThrow(() -> new RuntimeException("Deck não encontrado"));
 
-        if (cardsList.isEmpty()) {
+        List<Card> cards = cardRepository.findByDeckId(deck.getId());
+
+        if (cards.isEmpty()) {
             throw new RuntimeException("Não existem cards neste deck");
         }
 
         Random random = new Random();
-        int index = random.nextInt(cardsList.size());
-
-        return cardsList.get(index);
+        return cards.get(random.nextInt(cards.size()));
     }
 
     // pegar lista de cards OK
