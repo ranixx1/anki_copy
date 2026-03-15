@@ -68,7 +68,7 @@ public class CardController {
                 return ResponseEntity.ok(response);
         }
 
-        @GetMapping("/cards/run")
+        @GetMapping("/run")
         public ResponseEntity<Card> runCard(@RequestParam("deckName") String deckName) {
                 return ResponseEntity.ok(cardService.runCard(deckName));
         }
