@@ -25,57 +25,57 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 
 public class CardController {
-    private final CardService cardService;
+        private final CardService cardService;
 
-    @PostMapping
-    public ResponseEntity<CardResponseDto> criarCard(
-            @RequestBody CardRequest request) {
+        @PostMapping
+        public ResponseEntity<CardResponseDto> criarCard(
+                        @RequestBody CardRequest request) {
 
-        Card card = cardService.criarCard(
-                request.getFront(),
-                request.getBack(),
-                request.getLevel(),
-                request.getDeckId());
+                Card card = cardService.criarCard(
+                                request.getFront(),
+                                request.getBack(),
+                                request.getLevel(),
+                                request.getDeckId());
 
-        CardResponseDto response = new CardResponseDto(
-                card.getId(),
-                card.getFront(),
-                card.getBack(),
-                card.getLevel(),
-                card.getDeck().getId());
+                CardResponseDto response = new CardResponseDto(
+                                card.getId(),
+                                card.getFront(),
+                                card.getBack(),
+                                card.getLevel(),
+                                card.getDeck().getId());
 
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(response);
-    }
+                return ResponseEntity.status(HttpStatus.CREATED)
+                                .body(response);
+        }
 
-    @GetMapping
-    public ResponseEntity<List<CardResponseDto>> listarCard(
-            @RequestParam(required = false) Integer deckId) {
+        @GetMapping
+        public ResponseEntity<List<CardResponseDto>> listarCard(
+                        @RequestParam(required = false) Integer deckId) {
 
-        List<Card> cards = (deckId != null)
-                ? cardService.listarPorDeck(deckId)
-                : cardService.listarCards();
+                List<Card> cards = (deckId != null)
+                                ? cardService.listarPorDeck(deckId)
+                                : cardService.listarCards();
 
-        List<CardResponseDto> response = cards.stream()
-                .map(c -> new CardResponseDto(
-                        c.getId(),
-                        c.getFront(),
-                        c.getBack(),
-                        c.getLevel(),
-                        c.getDeck().getId()))
-                .toList();
+                List<CardResponseDto> response = cards.stream()
+                                .map(c -> new CardResponseDto(
+                                                c.getId(),
+                                                c.getFront(),
+                                                c.getBack(),
+                                                c.getLevel(),
+                                                c.getDeck().getId()))
+                                .toList();
 
-        return ResponseEntity.ok(response);
-    }
+                return ResponseEntity.ok(response);
+        }
 
-    @GetMapping("/cards/run")
-    public ResponseEntity<Card> runCard(@RequestParam String deckname){
-        return ResponseEntity.ok(cardService.runCard(deckname));
-    }
+        @GetMapping("/cards/run")
+        public ResponseEntity<Card> runCard(@RequestParam("deckName") String deckName) {
+                return ResponseEntity.ok(cardService.runCard(deckName));
+        }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Integer id) {
-        cardService.deletar(id);
-        return ResponseEntity.noContent().build();
-    }
+        @DeleteMapping("/{id}")
+        public ResponseEntity<Void> deletar(@PathVariable Integer id) {
+                cardService.deletar(id);
+                return ResponseEntity.noContent().build();
+        }
 }

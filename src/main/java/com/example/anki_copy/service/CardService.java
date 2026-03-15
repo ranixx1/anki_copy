@@ -52,7 +52,7 @@ public class CardService {
     // anki.run
     public Card runCard(String deckName) {
 
-        Deck deck = deckRepository.findByNameIgnoreCase(deckName)
+        Deck deck = deckRepository.findByNomeIgnoreCase(deckName)
                 .orElseThrow(() -> new RuntimeException("Deck não encontrado"));
 
         List<Card> cards = cardRepository.findByDeckId(deck.getId());

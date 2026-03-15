@@ -12,6 +12,6 @@ import com.example.anki_copy.model.Deck;
 public interface DeckRepository extends JpaRepository<Deck, Integer> {
     Optional<Deck> findByNome(String nome);
 
-    Optional<Deck> findByNameIgnoreCase(String name);
+    Optional<Deck> findByNomeIgnoreCase(String nome);
 
 }
