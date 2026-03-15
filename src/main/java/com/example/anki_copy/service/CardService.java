@@ -3,6 +3,8 @@ package com.example.anki_copy.service;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
+
 import com.example.anki_copy.enums.Level;
 import com.example.anki_copy.model.Card;
 import com.example.anki_copy.model.Deck;
@@ -46,6 +48,25 @@ public class CardService {
 
         return cards;
     }
+
+    // anki.run
+    public Card runCard(Integer deckId) {
+
+        var cardsList = cardRepository.findByDeckId(deckId);
+
+        if (cardsList.isEmpty()) {
+            throw new RuntimeException("Não existem cards neste deck");
+        }
+
+        Random random = new Random();
+        int index = random.nextInt(cardsList.size());
+
+        return cardsList.get(index);
+    }
+
+    // pegar lista de cards OK
+    // sortear ou listar cards do deck
+    // categorizar de acordo com o ENUM
 
     public void deletar(Integer id) {
         cardRepository.deleteById(id);

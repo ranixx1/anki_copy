@@ -68,6 +68,11 @@ public class CardController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/cards/run")
+    public ResponseEntity<Card> runCard(@RequestParam Integer deckId){
+        return ResponseEntity.ok(cardService.runCard(deckId));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Integer id) {
         cardService.deletar(id);
