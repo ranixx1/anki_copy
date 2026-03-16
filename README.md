@@ -12,7 +12,7 @@ API REST desenvolvida com **Spring Boot** para gerenciamento de
 -   Spring Web
 -   Spring Data JPA
 -   Lombok
--   Banco de dados (H2 / PostgreSQL / MySQL)
+-   Banco de dados PostgreSQL
 
 ------------------------------------------------------------------------
 
